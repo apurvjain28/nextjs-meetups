@@ -1,0 +1,33 @@
+import { useRouter } from "next/router";
+import Card from "../ui/Card";
+import classes from "./MeetupItem.module.css";
+
+function MeetupItem(props) {
+  const router = useRouter();
+  //const meetupId = router.query.meetupId;
+
+  const showDetailHandler = () => {
+    router.push("/" + props.id);
+  };
+
+  return (
+    <li className={classes.item}>
+      <Card>
+        <div className={classes.image}>
+          <img src={props.image} alt={props.title} />
+        </div>
+        <div className={classes.content}>
+          <h3>{props.title}</h3>
+          <address>{props.address}</address>
+        </div>
+        <div className={classes.actions}>
+          {/* // Can simply use Link here to navigate to [meetupId] folder // but we
+          are trying new thing */}
+          <button onClick={showDetailHandler}>Show Details</button>
+        </div>
+      </Card>
+    </li>
+  );
+}
+
+export default MeetupItem;
